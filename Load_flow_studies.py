@@ -120,7 +120,7 @@ def save_to_excel(BusInfo, S, loss, YbusG, YbusB, total, total_loss):
 def main():
 
     ## Initialisation
-    filenam = 'OurData.xlsx'
+    filenam = 'test1.xlsx'
     branch_data_sheet = 'BranchData'
     bus_data_sheet = 'BusData'
 

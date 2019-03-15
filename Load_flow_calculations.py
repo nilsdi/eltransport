@@ -4,6 +4,7 @@
 # https://no.wikipedia.org/wiki/MIT-lisensen
 
 import numpy as np
+import math
 from numpy.linalg import inv
 import openpyxl
 import cmath
@@ -111,6 +112,8 @@ def Reactive(bus_def, YbusG, YbusB, theta, voltage, bus):
     return q
 def jacob_init(bus_def, YbusG, YbusB, theta, voltage):
     a = bus_def.sum()
+    a = math.floor(a)
+    print("a = ", a);
     b = np.count_nonzero(bus_def)
     jacob = np.zeros((a,a))
     PQ = np.zeros((a,4), dtype=np.int)
@@ -336,8 +339,8 @@ def BusData(filenam,bus_data_sheet):
     Volt0 = np.matrix(bus_data[:, 2]) / V_base
     theta0 = np.matrix(bus_data[:, 3])
     S_base = np.matrix(bus_data[0, 10])
-    P_init = np.matrix(bus_data[:, 4]) / S_base  # Slack bus is give the initial value = 0
-    Q_init = np.matrix(bus_data[:, 5]) / S_base  # Slack bus is give the initial value = 0
+    P_init = np.matrix(bus_data[:, 4]) / S_base  # Slack bus is given the initial value = 0
+    Q_init = np.matrix(bus_data[:, 5]) / S_base  # Slack bus is given the initial value = 0
     P_load = -np.matrix(bus_data[:, 6]) / S_base
     Q_load = -np.matrix(bus_data[:, 7]) / S_base
     Q_max = 0
@@ -381,6 +384,8 @@ def Load_flow(filenam, branch_data_sheet, bus_data_sheet):
     Ybus, from_line, to_line, B,Line_adm = BranchData(filenam, branch_data_sheet, bus_def)
     YbusG = np.real(Ybus)
     YbusB = np.imag(Ybus)
+    print("YbusG = ",YbusG)                          # just checking if those are irregular
+    print("YbusB = ", YbusB)
 
 
     ## Newton-Rapsons method
