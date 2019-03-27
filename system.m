@@ -6,8 +6,8 @@ function mpc = System
 %   by John Grainger, Jr., William Stevenson, McGraw-Hill, 1994.
 
 %   MATPOWER
-Bus_data = xlsread('FilDataTelemarksnett.xlsx','BusData');
-Branch_data = xlsread('FilDataTelemarksnett.xlsx','BranchData');
+Bus_data = xlsread('BaseCaseMatlab.xlsx','BusData');
+Branch_data = xlsread('BaseCaseMatlab.xlsx','BranchData');
 
 
 %% MATPOWER Case Format : Version 2
